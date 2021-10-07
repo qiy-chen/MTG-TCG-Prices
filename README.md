@@ -18,7 +18,7 @@ Fetch the lowest price of each card of Magic: The Gathering of a list from a ven
 
 ## Instructions:
 
-Be sure that you have Python 3 installed in your computer.
+Be sure that you have Python 3 installed in your computer, Requests and BeautifulSoup.
 
 1. Option 1: Your list must be named **"decklist.cdeck"** (edit the file extension) and be **in the program's root**.
 
