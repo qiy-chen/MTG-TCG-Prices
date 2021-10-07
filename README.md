@@ -5,7 +5,7 @@ Written in Python 3
 
 Version 0.1
 
-Fetch the lowest price of each card of Magic:The Gathering of a list from a vendor's website (currently l'Expédition).
+Fetch the lowest price of each card of Magic: The Gathering of a list from a vendor's website (currently l'Expédition).
 
 ## The program is divided into three main parts:
 
