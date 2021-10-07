@@ -15,9 +15,9 @@ print("-"*a)
 
 print("To read the file 'decklist.cdck' and to update the prices")
 print("""The format is:
-Exemple Card Name 1
-Exemple Card Name 2
-Exemple Card Name 3
+Example Card Name1
+Example Card Name2
+Example Card Name3
 ...
 
 DO NOT USE THOSE SPECIAL CHARACTERS: '@' or '*' !!!
