@@ -5,6 +5,7 @@ import random
 import traceback
 import math
 
+#Head Intro
 print("Magic Prices")
 print("Uses: Calculate Deck's Budget with l'Expédition's prices")
 print("Par Qi Yuan ;)")
@@ -25,11 +26,15 @@ You can also use .dck file (from MTG Forge) by converting it into a useable form
 
 Press Enter to start""")
 input()
+#A simple function to replace any element in a list with another
 def replacelist(position,x,xlist):
     xlist.pop(position)
     xlist.insert(position,x)
     return xlist
 
+#A function to load a file
+#-option1: choose to load a custom decklist("d") or a default lands only list("l") at the program's root
+#Return the content of the file as a list
 def loadcommand(option1):
     print("Loading file...")
     if option1 == "d":
@@ -48,6 +53,8 @@ def loadcommand(option1):
         input()
         quit()
 
+#Function to save the list
+#-option1: choose to save a decklist("d") or a land only list("l") at the program's root
 def savecommand(savelist,option1):
     text = savelist
     if option1 == "d":
@@ -59,6 +66,7 @@ def savecommand(savelist,option1):
 #        savefile = open("dat.txt","w+")
         savefile.close()
 
+#Function to convert a file named decklistconvert.dck (format used by MTG Forge for deck lists) into a useable file for this program
 def convert():
     print("Loading file...")
     try:
@@ -89,29 +97,45 @@ def convert():
         input()
         quit()
 
+#Function to fetch prices of cards in a list
+#-cardstate: Choose NM condition only or every condition
+#-cardList: list of cards
+#-return an upgraded list with prices
 def idpricebot(cardList,cardstate):
     updatedList = []
     total = 0
     cardTotal = 0
+#For each element, assign the name to cardname.
     for i in range(len(cardList)):
         cardname = cardList[i]
         if cardname.count("*") == 0:
+            #Convert blank space into "+"
             if cardname.count(" ") > 0:
                 cardname = cardname.split(" ")
                 cardname = "+".join(cardname)
+            #Take only the String before "@"
             if cardname.count("@") > 0:
                 pos = cardname.find("@")
                 cardname = cardname[:pos]
             
+            #Search HTML content in the first page of result
             url = "https://www.expeditionjeux.com/products/search?q="+cardname+"&c=1"
             print("Searching in "+url)
+            
+            #Raw HTML data in everything
             everything = requests.get(url)
+            #Raw HTML data into BeautifulSoup Object
             soup = BeautifulSoup(everything.content, "html.parser")
+            #Determine if the card is in stock for each card found in the HTML
             form = soup.find_all('form', attrs = {"class": "add-to-cart-form"} )
+            #Set a temporary value threshold for the lowest price available
             lowprice = 99999.9
             for i in range(len(form)):
+                #Assign card name to candidate
                 candidate = str(form[i])
+                #Assign split card name to cardnameseparated
                 cardnameseparated = cardname.split("+")
+                #Set up a veryfier for the card name. Send false if it find prohibited elements (such as disqualifying word) or no "NM" condition if cardstate is "NM"
                 veryfier = 1
                 for i in range(len(cardnameseparated)):
                     name = str(cardnameseparated[i])
@@ -119,6 +143,7 @@ def idpricebot(cardList,cardstate):
                         veryfier = 0
                     if cardstate == "NM" and candidate.count("NM") == 0:
                         veryfier = 0
+                #Set the price of the card if it passes the verification and it is the current lowest price.
                 if veryfier == 1:
                     pricingzone = candidate
                     pos = pricingzone.find("""<span class="regular price">CAD$ """)
@@ -131,15 +156,20 @@ def idpricebot(cardList,cardstate):
                             lowprice = pricing
                     except:
                         pass
+            #Set a negative result if no eligible price have been found
             if lowprice == 99999.9:
                 lowprice = "Not Found"
+            #Assign the correctly formated name of the card to realname
             realname = " ".join(cardnameseparated)
+            #Print the state of the card
             print("For", realname + ":")
             print(str(lowprice)+" CAD$")
             print("-"*50)
             x = 40-len(realname)
+            #Add the card to the updated list of cards
             cardprice = str(realname + "@" + " "*x + str(lowprice))
             updatedList.append(cardprice)
+            #Count the total of card if eligible and total of cards analyzed
             if not str(lowprice) == "Not Found":
                 total += lowprice
             cardTotal += 1
@@ -150,14 +180,18 @@ def idpricebot(cardList,cardstate):
     return updatedList
             
                     
-
+#Main Console user interface
 def main(option1):
     cardstate = "All"
+    
+    #Ask if user want to convert file
     print("""Do you want to convert 'decklistconvert.dck' into a format compatible to this program?.
 Attention, Commander Deck Only and the Commander is not included! (y/n)""")
     option = input()
     if option == "y":
         convert()
+        
+    #Ask if user want to accept only cards in Near Mint condition.
     print("""Do you want to accept only NM condition cards? (y/n)""")
     option = input()
     if option == "y":
@@ -165,11 +199,14 @@ Attention, Commander Deck Only and the Commander is not included! (y/n)""")
     url = ""
     cardList = loadcommand(option1)
     cardList = idpricebot(cardList,cardstate)
+    
+    #Print the result to the console in a properly formatted list
     show = "\n".join(cardList)
     print("Completed")
     print(show)
     print("Save file? (y/n)")
     option = input()
+    #Save file if wanted
     if option == "y":
         savecommand(show,option1)
         print("Saved successfully!")
@@ -177,6 +214,7 @@ Attention, Commander Deck Only and the Commander is not included! (y/n)""")
     input()
     quit()
 
+#Main program executing the code
 print("Check your deck's price or lands prices? (d/l)")
 option1 = input()
 if option1 == "d" or option1 == "l":
