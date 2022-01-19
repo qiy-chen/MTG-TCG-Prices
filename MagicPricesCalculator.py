@@ -8,7 +8,7 @@ import math
 #Head Intro
 print("Magic Prices")
 print("Uses: Calculate Deck's Budget with l'Expédition's prices")
-print("Par Qi Yuan ;)")
+print("By Qi Yuan")
 print("Version 0.1 (29/4/21)")
 a = 70
 print("-"*a)
@@ -22,7 +22,7 @@ Example Card Name3
 
 DO NOT USE THOSE SPECIAL CHARACTERS: '@' or '*' !!!
 Some prices may be wrong because of cards having the same name and the program picking the cheapest.
-You can also use .dck file (from MTG Forge) by converting it into a useable format for the program by dropping it in the same folder, naming it 'decklistconvert.dck' and starting the program.
+You can also use .dck file (from MTG Forge) by dropping the .dck file in the same folder as the program, naming it 'decklistconvert.dck' and starting the program.
 
 Press Enter to start""")
 input()
@@ -185,8 +185,7 @@ def main(option1):
     cardstate = "All"
     
     #Ask if user want to convert file
-    print("""Do you want to convert 'decklistconvert.dck' into a format compatible to this program?.
-Attention, Commander Deck Only and the Commander is not included! (y/n)""")
+    print("""Do you want to convert 'decklistconvert.dck' into a format compatible to this program?(y/n)""")
     option = input()
     if option == "y":
         convert()
