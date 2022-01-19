@@ -44,6 +44,6 @@ Being my first program manipulating HTML data, it has unfortunately some limitat
 
 * For performance reasons, it only fetches the first page of the search result.
 
-* Only one vendor is available for now, more will be added later.
+* Only one vendor is available for now.
 
 * The file opening system is rigid, requiring specific names to detect the required files.
