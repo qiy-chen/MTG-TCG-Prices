@@ -20,7 +20,7 @@ Fetch the lowest price of each card of Magic: The Gathering of a list from a ven
 
 Be sure that you have Python 3, Requests and BeautifulSoup 4 installed in your computer.
 
-1. Option 1: Your list must be named **"decklist.cdeck"** (edit the file extension) and be **in the program's root**.
+1. Option 1: Your list must be named **"decklist.cdeck"** (edit the file extension) and be **in the program's root folder**.
 
   >  It must be formatted in this way: 
   >
@@ -32,9 +32,9 @@ Be sure that you have Python 3, Requests and BeautifulSoup 4 installed in your c
   >
   > ...
 
-2. Option 2: You can convert your decklist from MTG Forge (.dck). It must be named **"decklistconvert.dck"** and be **in the program's root**.
+2. Option 2: You can import your decklist from MTG Forge's decklist file (.dck). It must be named **"decklistconvert.dck"** and be **in the program's root folder**. The program will convert the file if asked.
 
-Open **MagicPricesCalculator.py** and you are ready to go!
+Open **MagicPricesCalculator.py**, follow the instructions and you are ready to go!
 
 ## Limits
 
