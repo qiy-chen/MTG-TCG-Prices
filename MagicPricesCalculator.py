@@ -4,6 +4,9 @@ from bs4 import BeautifulSoup
 import random
 import traceback
 import math
+import os
+#To get the correct path directory
+os.chdir(os.path.dirname(__file__))
 
 #Head Intro
 print("Magic Prices")
@@ -42,7 +45,7 @@ def loadcommand(option1):
     elif option1 == "l":
         filename = "LandsPricing.cdeck"
     try:
-        with open(filename, "r", encoding="utf-8") as savefile:
+        with open(os.getcwd()+"\\"+filename, "r", encoding="utf-8") as savefile:
     #       savefile = open("dat.txt","w+")
             contents = savefile.read()
             contents = contents.split("\n")
@@ -61,7 +64,7 @@ def savecommand(savelist,option1):
         filename = "DeckPricing.txt"
     elif option1 == "l":
         filename = "LandsPricing.txt"
-    with open(filename, "w", encoding="utf-8") as savefile:
+    with open(os.getcwd()+"\\"+filename, "w", encoding="utf-8") as savefile:
         savefile.write(text)
 #        savefile = open("dat.txt","w+")
         savefile.close()
@@ -70,7 +73,7 @@ def savecommand(savelist,option1):
 def convert():
     print("Loading file...")
     try:
-        with open("decklistconvert.dck", "r", encoding="utf-8") as savefile:
+        with open(os.getcwd()+"\\"+"decklistconvert.dck", "r", encoding="utf-8") as savefile:
     #       savefile = open("dat.txt","w+")
             contents = savefile.read()
             contents = contents.split("\n")
@@ -86,7 +89,7 @@ def convert():
                 print("Converted " + item + " text")
             print("Done, saving...")
             text = "\n".join(convertedList)
-            with open("decklist.cdeck", "w", encoding="utf-8") as savefile:
+            with open(os.getcwd()+"\\"+"decklist.cdeck", "w", encoding="utf-8") as savefile:
                 savefile.write(text)
 #               savefile = open("dat.txt","w+")
                 savefile.close()
