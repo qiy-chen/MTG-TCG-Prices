@@ -22,7 +22,7 @@ Be sure that you have Python 3, Requests and BeautifulSoup 4 installed in your c
 
 1. Option 1: Your list must be named **"decklist.cdeck"** (edit the file extension) and be **in the program's root folder**.
 
-  >  It must be formatted in this way: 
+It must be formatted in this way: 
   >
   > Example Card Name1
   >
