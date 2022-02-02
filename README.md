@@ -11,9 +11,9 @@ Fetch the lowest price of each card of Magic: The Gathering of a list from a ven
 
 * A main user console interface
 
-* A set of function to load and save user lists
+* A set of functions to load and save user lists
 
-* A set of function to request raw HTML data and to extract the relevant information.
+* A set of functions to request raw HTML data and to extract the relevant information.
 
 
 ## Instructions:
